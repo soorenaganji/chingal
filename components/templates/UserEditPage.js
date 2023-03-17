@@ -6,13 +6,13 @@ import Form from "@/components/modules/Form";
 const UserEditPage = ({data , setDarkMode , id}) => {
     const postEditedData = async (newUserData) => {
       const userData = await axios.get(
-        `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${router.query.userId}`
+        `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${id}`
       );
       if (userData == newUserData) {
         return;
       } else {
         const res = await axios.put(
-          `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${router.query.userId}`,
+          `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${id}`,
           newUserData
         );
   
@@ -23,13 +23,13 @@ const UserEditPage = ({data , setDarkMode , id}) => {
     };
     const deleteData = async () => {
       const doesUserExist = await axios.get(
-        `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${router.query.userId}`
+        `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${id}`
       );
       if (doesUserExist.status == 404) {
         return;
       } else {
         const res = await axios.delete(
-          `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${router.query.userId}`
+          `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${id}`
         );
         router.push("/");
       }

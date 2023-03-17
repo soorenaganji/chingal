@@ -6,7 +6,7 @@ const userEditPage = ({ data, setDarkMode }) => {
   if (router.query.userId) {
     return (
       <main>
-        <UserEditPage data={data} setDarkMode={setDarkMode} />
+        <UserEditPage data={data} setDarkMode={setDarkMode} router={router} id={router.query.userId} />
       </main>
     );
   }

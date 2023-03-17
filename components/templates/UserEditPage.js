@@ -1,7 +1,6 @@
 import Header from "@/components/layout/Header";
 import Link from "next/link";
 import axios from "axios";
-import { useRouter } from "next/router";
 import { IoIosArrowBack } from "react-icons/io";
 import Form from "@/components/modules/Form";
 const UserEditPage = ({data , setDarkMode , id}) => {

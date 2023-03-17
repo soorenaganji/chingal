@@ -3,10 +3,40 @@ import axios from "axios";
 import { useRouter } from "next/router";
 const userEditPage = ({ data, setDarkMode }) => {
   const router = useRouter();
+  const postEditedData = async (newUserData) => {
+    const userData = await axios.get(
+      `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${router.query.userId}`
+    );
+    if (userData == newUserData) {
+      return;
+    } else {
+      const res = await axios.put(
+        `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${router.query.userId}`,
+        newUserData
+      );
+
+      const { data } = res;
+      console.log(data);
+    }
+    router.push("/");
+  };
+  const deleteData = async () => {
+    const doesUserExist = await axios.get(
+      `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${router.query.userId}`
+    );
+    if (doesUserExist.status == 404) {
+      return;
+    } else {
+      const res = await axios.delete(
+        `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${router.query.userId}`
+      );
+      router.push("/");
+    }
+  };
   if (router.query.userId) {
     return (
       <main>
-        <UserEditPage data={data} setDarkMode={setDarkMode} router={router} id={router.query.userId} />
+        <UserEditPage data={data} setDarkMode={setDarkMode} postEditedData={postEditedData} deleteData={deleteData} />
       </main>
     );
   }

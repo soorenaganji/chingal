@@ -3,37 +3,7 @@ import Link from "next/link";
 import axios from "axios";
 import { IoIosArrowBack } from "react-icons/io";
 import Form from "@/components/modules/Form";
-const UserEditPage = ({data , setDarkMode , id , router}) => {
-    const postEditedData = async (newUserData) => {
-      const userData = await axios.get(
-        `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${id}`
-      );
-      if (userData == newUserData) {
-        return;
-      } else {
-        const res = await axios.put(
-          `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${id}`,
-          newUserData
-        );
-  
-        const { data } = res;
-        console.log(data);
-      }
-      router.push("/");
-    };
-    const deleteData = async () => {
-      const doesUserExist = await axios.get(
-        `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${id}`
-      );
-      if (doesUserExist.status == 404) {
-        return;
-      } else {
-        const res = await axios.delete(
-          `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${id}`
-        );
-        router.push("/");
-      }
-    };
+const UserEditPage = ({data , setDarkMode , postEditedData , deleteData}) => {
     return (
       <div className="w-screen dark:text-white ">
         <Header setDarkMode={setDarkMode} searched={""} isInHome={false} />

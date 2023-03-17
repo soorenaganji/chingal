@@ -6,6 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function index({data , setDarkMode}) {
   console.log(data)
+  
   return (
     <>
       <main>

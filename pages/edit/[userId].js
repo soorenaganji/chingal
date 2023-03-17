@@ -1,7 +1,7 @@
-import UserEditPage from "@/components/templates/UserEditPage";
+import EditPage from "@/components/templates/UserEditPage";
 import axios from "axios";
 import { useRouter } from "next/router";
-const userEditPage = ({ data, setDarkMode }) => {
+const UserEditPage = ({ data, setDarkMode }) => {
   const router = useRouter();
   const postEditedData = async (newUserData) => {
     const userData = await axios.get(
@@ -36,7 +36,7 @@ const userEditPage = ({ data, setDarkMode }) => {
   if (router.query.userId) {
     return (
       <main>
-        <UserEditPage data={data} setDarkMode={setDarkMode} postEditedData={postEditedData} deleteData={deleteData} />
+        <EditPage data={data} setDarkMode={setDarkMode} postEditedData={postEditedData} deleteData={deleteData} />
       </main>
     );
   }
@@ -76,4 +76,4 @@ export async function getStaticProps(context) {
   };
 }
 
-export default userEditPage;
+export default UserEditPage;

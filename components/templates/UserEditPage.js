@@ -1,9 +1,8 @@
 import Header from "@/components/layout/Header";
 import Link from "next/link";
-import axios from "axios";
 import { IoIosArrowBack } from "react-icons/io";
 import Form from "@/components/modules/Form";
-const UserEditPage = ({data , setDarkMode , postEditedData , deleteData}) => {
+const EditPage = ({data , setDarkMode , postEditedData , deleteData}) => {
     return (
       <div className="w-screen dark:text-white ">
         <Header setDarkMode={setDarkMode} searched={""} isInHome={false} />
@@ -23,4 +22,4 @@ const UserEditPage = ({data , setDarkMode , postEditedData , deleteData}) => {
     );
 }
 
-export default UserEditPage;
+export default EditPage;

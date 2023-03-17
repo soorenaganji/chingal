@@ -3,7 +3,7 @@ import Link from "next/link";
 import axios from "axios";
 import { IoIosArrowBack } from "react-icons/io";
 import Form from "@/components/modules/Form";
-const UserEditPage = ({data , setDarkMode , id}) => {
+const UserEditPage = ({data , setDarkMode , id , router}) => {
     const postEditedData = async (newUserData) => {
       const userData = await axios.get(
         `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${id}`

@@ -1,13 +1,10 @@
 import Header from "@/components/layout/Header";
 import Link from "next/link";
-import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { ageToDate, persianToEnglish } from "@/funcs/funcs";
 import { IoIosArrowBack } from "react-icons/io";
 import Form from "@/components/modules/Form";
-const UserEditPage = ({data , setDarkMode}) => {
-    const router = useRouter();
+const UserEditPage = ({data , setDarkMode , id}) => {
     const postEditedData = async (newUserData) => {
       const userData = await axios.get(
         `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${router.query.userId}`

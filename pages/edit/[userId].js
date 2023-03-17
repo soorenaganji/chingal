@@ -1,11 +1,15 @@
 import UserEditPage from "@/components/templates/UserEditPage";
 import axios from "axios";
+import { useRouter } from "next/router";
 const userEditPage = ({ data, setDarkMode }) => {
-  return (
-    <main>
-      <UserEditPage data={data} setDarkMode={setDarkMode} />
-    </main>
-  );
+  const router = useRouter();
+  if (router.query.userId) {
+    return (
+      <main>
+        <UserEditPage data={data} setDarkMode={setDarkMode} />
+      </main>
+    );
+  }
 };
 export async function getStaticPaths() {
   const res = await axios.get(

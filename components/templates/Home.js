@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { IoIosArrowBack } from "react-icons/io";
 import Header from "../layout/Header";
-
+import axios from 'axios'
 import User from "../modules/User";
 const Home = ({ data, setDarkMode }) => {
   const router = useRouter();
@@ -27,14 +27,13 @@ const Home = ({ data, setDarkMode }) => {
       return;
     }
   });
-  const postData = async (newUserData) => {
+  const postData = async (newUserData , setNewUserData) => {
     const res = await axios.post(
       `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users`,
       newUserData
     );
     setNewUserData({
       name: "",
-      age: "",
       avatar: "",
       phoneNumber: "",
       email: "",
@@ -44,13 +43,12 @@ const Home = ({ data, setDarkMode }) => {
       zipcode: "",
       dateOfBirth: "",
     });
-    formOpener(false);
+    setIsFormOpen(false);
   };
-  const cancel = () => {
+  const cancel = (setNewUserData) => {
     setNewUserData({
       name: "",
-      age: "",
-      avatar,
+      avatar : "",
       phoneNumber: "",
       country: "",
       city: "",
@@ -59,7 +57,7 @@ const Home = ({ data, setDarkMode }) => {
       zipcode: "",
       dateOfBirth: "",
     });
-    formOpener(false);
+    setIsFormOpen(false);
   };
   return (
     <>

@@ -212,7 +212,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
             <div className="w-full flex items-center justify-between mt-8 flex-row-reverse ">
               <button
                 className="w-40 h-14 text-lg rounded-lg bg-[#0559FD] text-white shadow-lg shadow-[#0558fd80]"
-                onClick={() => postData(newUserData)}
+                onClick={() => postData(newUserData , setNewUserData)}
               >
                 تایید
               </button>
@@ -222,7 +222,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                     ? "w-40 h-14 text-lg rounded-lg bg-[#FF3231] shadow-lg shadow-[#ff3131a4] text-white "
                     : "w-40 h-14 text-lg rounded-lg border text-[#0559fd] border-[#0559FD] "
                 }
-                onClick={cancelOrDelete}
+                onClick={() => cancelOrDelete(setNewUserData)}
               >
                 {isOnEdit ? "حذف" : "لغو"}
               </button>

@@ -42,22 +42,7 @@ const UserEditPage = ({ data, setDarkMode }) => {
     );
   }
 };
-export async function getStaticPaths() {
-  const res = await axios.get(
-    `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users`
-  );
-  const data = res.data;
-  let params = [];
-  for (let i = 0; i < (await data.length); i++) {
-    params.push({ params: { userId: (i + 1).toString() } });
-  }
-  return {
-    paths: params,
-    fallback: true,
-  };
-}
-
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const {
     params: { userId },
   } = context;

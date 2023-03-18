@@ -3,16 +3,16 @@ import { useState } from "react";
 import { FaUserAstronaut } from "react-icons/fa";
 import { GrFormClose } from "react-icons/gr";
 import { useRouter } from "next/router";
-import { calcAge } from "@/funcs/funcs";
+import { calcAge , isEnglish } from "@/funcs/funcs";
 const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
-  const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState(isOnEdit ? data.avatar : null);
   const router = useRouter();
   const [newUserData, setNewUserData] = useState(
     data
       ? data
       : {
           name: "",
-          dateOfBirth: "",
+          dateOfBirth : "",
           avatar,
           phoneNumber: "",
           country: "",
@@ -23,7 +23,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
           company: "",
         }
   );
-
+  const [userAge , setUserAge] = useState(calcAge(newUserData.dateOfBirth))
   const imageHandler = ({ target: { files } }) => {
     files && setAvatar(URL.createObjectURL(files[0]));
     files && setNewUserData({ ...newUserData, avatar: files[0] });
@@ -33,11 +33,12 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
     const { value } = e.target;
     setNewUserData({ ...newUserData, [e.target.name]: value });
   };
-  const DOBChangeHandler = (e) => {
-    setNewUserData({
-      ...newUserData,
-      dateOfBirth: ageToDate(persianToEnglish(e.target.value)),
-    });
+  const DOBChangeHandler = ({ target : {value} }) => {
+   setUserAge(value)
+   setNewUserData({...newUserData , dateOfBirth : ageToDate(value)})
+   console.log(value)
+   console.log(ageToDate(value))
+
   };
 
   return (
@@ -109,10 +110,10 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                 <label className="text-slate-600">سن</label>
                 <br />
                 <input
-                  value={calcAge(newUserData.dateOfBirth)}
+                  value={userAge}
                   onChange={DOBChangeHandler}
-                  name="age"
-                  type="text"
+                  name="dateOfBirtth"
+                  type="number"
                   placeholder="سن کاربر را وارد کنید"
                   className="bg-transparent border border-slate-300 p-4 rounded-xl outline-none "
                 />

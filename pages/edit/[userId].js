@@ -4,24 +4,20 @@ import { useRouter } from "next/router";
 const UserEditPage = ({ data, setDarkMode }) => {
   const router = useRouter();
   const postEditedData = async (newUserData) => {
+
     if(router.query.userId){
           const userData = await axios.get(
       `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${router.query.userId}`
     );
-    }
-
     if (userData == newUserData) {
       return;
     } else {
-      if(router.query.userId){
       const res = await axios.put(
         `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${router.query.userId}`,
         newUserData
-      )}
-
-      const { data } = res;
-      console.log(data);
-    }
+      )  
+      console.log(await res)
+    }} 
     router.push("/");
   };
   const deleteData = async () => {

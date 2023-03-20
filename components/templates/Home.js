@@ -1,13 +1,11 @@
 import { isEnglish } from "@/funcs/funcs";
 import Form from "../modules/Form";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import Header from "../layout/Header";
 import axios from 'axios'
 import User from "../modules/User";
 const Home = ({ data, setDarkMode }) => {
-  const router = useRouter();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [searched, setSearched] = useState("");
   const formOpener = () => {

@@ -2,7 +2,6 @@ import { TbSunLow, TbMoonFilled } from "react-icons/tb";
 import logo from "@/public/chingal-logo 1.png";
 import Image from "next/image";
 import Link from "next/link";
-import { HiMagnifyingGlass } from 'react-icons/hi'
 const Header = ({ searched, setSearched, setDarkMode , isInHome }) => {
   const searcher = (e) => {
     const phrase = e.target.value.toLowerCase();

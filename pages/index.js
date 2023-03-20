@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Inter } from "next/font/google";
 import Home from "@/components/templates/Home";
 import axios from "axios";
@@ -6,7 +5,6 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function index({data , setDarkMode}) {
   console.log(data)
-  
   return (
     <>
       <main>

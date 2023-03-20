@@ -1,9 +1,9 @@
-import { ageToDate, persianToEnglish } from "@/funcs/funcs";
+import { ageToDate } from "@/funcs/funcs";
 import { useState } from "react";
 import { FaUserAstronaut } from "react-icons/fa";
 import { GrFormClose } from "react-icons/gr";
 import { useRouter } from "next/router";
-import { calcAge , isEnglish } from "@/funcs/funcs";
+import { calcAge } from "@/funcs/funcs";
 const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
   const [avatar, setAvatar] = useState(isOnEdit ? data.avatar : null);
   const router = useRouter();

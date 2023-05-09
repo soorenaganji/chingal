@@ -1,62 +1,50 @@
-import { isEnglish } from "@/funcs/funcs";
+// COMPONENTS
 import Form from "../modules/Form";
-import { useState } from "react";
-import { IoIosArrowBack } from "react-icons/io";
 import Header from "../layout/Header";
-import axios from 'axios'
 import User from "../modules/User";
+// HOOKS
+import { useState } from "react";
+// PACKAGES
+import axios from 'axios'
+// ICONS
+import { IoIosArrowBack } from "react-icons/io";
+// HELPER FUNCTIONS
+import { filterBySearchedPhrase, resetFormData } from "@/helper/helper";
 const Home = ({ data, setDarkMode }) => {
+  // STATES
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [searched, setSearched] = useState("");
+  const [searchedPhrase, setSearchedPhrase] = useState("");
   const formOpener = () => {
     setIsFormOpen(true);
   };
-  const searchedUsers = [];
-  data.map((user) => {
-    if (isEnglish(user.name)) {
-      if (user.name.toLowerCase().includes(searched)) {
-        searchedUsers.push(user);
-      } else {
-        return;
-      }
-    } else if (user.name.includes(searched)) {
-      searchedUsers.push(user);
-    } else {
-      return;
-    }
-  });
+  // SEARCH BAR FUNCTION CALL
+  const searchedUsers = filterBySearchedPhrase(data , searchedPhrase)
+  //  LISTING USERS DATA AND PASSING THEM TO THE "User" COMPONENT
+  const listUsersInTable = () => {
+   return searchedUsers.length ? (
+      searchedUsers.map((user, index) => (
+        <User user={user} index={index} key={user.id} />
+      ))
+    ) : (
+      <p className="text-center py-4 mx-auto">
+        چیزی برای نشان دادن نیست
+      </p>
+    )
+  }
+  // FORM MODAL FUNCTIONS
   const postData = async (newUserData , setNewUserData) => {
     const res = await axios.post(
       `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users`,
       newUserData
     );
-    setNewUserData({
-      name: "",
-      avatar: "",
-      phoneNumber: "",
-      email: "",
-      country: "",
-      city: "",
-      street: "",
-      zipcode: "",
-      dateOfBirth: "",
-    });
+    resetFormData(setNewUserData)
     setIsFormOpen(false);
   };
   const cancel = (setNewUserData) => {
-    setNewUserData({
-      name: "",
-      avatar : "",
-      phoneNumber: "",
-      country: "",
-      city: "",
-      email: "",
-      street: "",
-      zipcode: "",
-      dateOfBirth: "",
-    });
+    resetFormData(setNewUserData)
     setIsFormOpen(false);
   };
+  // UI
   return (
     <>
       {isFormOpen && (
@@ -68,16 +56,16 @@ const Home = ({ data, setDarkMode }) => {
         />
       )}
       <div
-        className={`w-full h-full ${isFormOpen && "blur-lg"} dark:text-white `}
+        className={`w-full h-full ${isFormOpen && "blur-lg"} dark:text-white overflow-hidden `}
       >
         <Header
-          setSearched={setSearched}
+          setSearchedPhrase={setSearchedPhrase}
           setDarkMode={setDarkMode}
-          searched={searched}
+          searchedPhrase={searchedPhrase}
           isInHome={true}
         />
 
-        <div className="w-screen  p-16 ">
+        <div className="overflow-hidden  p-16  ">
           <div className="w-full h-[56px] flex items-center justify-between ">
             <div className="flex items-center justify-center gap-3">
               <IoIosArrowBack className="text-4xl" />
@@ -90,8 +78,8 @@ const Home = ({ data, setDarkMode }) => {
               کاربر جدید
             </button>
           </div>
-          <div className="w-full rounded-xl  mt-16 border dark:border-slate-700 overflow-hidden ">
-            <table className="w-full">
+          <div className=" rounded-xl  mt-8 border dark:border-slate-700  max-h-[80vh] overflow-x-hidden ">
+            <table className="w-full overflow-scroll">
               <thead>
                 <tr className="">
                   <th className=" rounded-tr-xl text-center bg-[#0559FD] text-white ">
@@ -115,15 +103,7 @@ const Home = ({ data, setDarkMode }) => {
                 </tr>
               </thead>
               <tbody className="text-center ">
-                {searchedUsers.length ? (
-                  searchedUsers.map((user, index) => (
-                    <User user={user} index={index} key={user.id} />
-                  ))
-                ) : (
-                  <p className="text-center py-4 mx-auto">
-                    چیزی برای نشان دادن نیست :)
-                  </p>
-                )}
+                {listUsersInTable()}
               </tbody>
             </table>
           </div>

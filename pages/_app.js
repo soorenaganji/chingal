@@ -1,10 +1,15 @@
+// COMPONENTS
 import Footer from "@/components/layout/Footer";
+// STYLES
 import "@/styles/globals.css";
+// BUILT-IN PACKAGES
 import Head from "next/head";
+// HOOKS
 import { useEffect, useState } from "react";
 export default function App({ Component, pageProps }) {
+  // DARKMODE STATES
   const [darkMode, setDarkMode] = useState(false);
-
+  // TO SAVE AND CHECK IF DARKMODE IS ENABLED OR NOT
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("isDarkMode") == null)) {
       localStorage.setItem("isDarkMode", JSON.stringify(darkMode));
@@ -27,8 +32,8 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
-      <div className={darkMode ? "dark w-screen " : "w-screen"}>
-        <div className="w-full h-full  bg-[#F3F8FC] bg-noise bg-left-top bg-repeat dark:bg-[#0C132C]  min-h-[100vh] ">
+      <div className={darkMode ? "dark  overflow-hidden " : " overflow-hidden"}>
+        <div className="w-full  bg-[#F3F8FC] bg-noise  bg-repeat dark:bg-[#0C132C]  min-h-[100vh] overflow-hidden ">
           <Component {...pageProps} setDarkMode={setDarkMode} />
           <Footer />
         </div>

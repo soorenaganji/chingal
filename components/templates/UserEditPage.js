@@ -1,7 +1,10 @@
+// COMPONENTS
 import Header from "@/components/layout/Header";
-import Link from "next/link";
-import { IoIosArrowBack } from "react-icons/io";
 import Form from "@/components/modules/Form";
+// BUILT-IN PACKAGES
+import Link from "next/link";
+// ICONS
+import { IoIosArrowBack } from "react-icons/io";
 const EditPage = ({data , setDarkMode , postEditedData , deleteData}) => {
     return (
       <div className="w-screen dark:text-white ">

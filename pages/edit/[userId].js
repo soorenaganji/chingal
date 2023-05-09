@@ -1,11 +1,17 @@
+// COMPONENTS
 import EditPage from "@/components/templates/UserEditPage";
+// PACKAGES
 import axios from "axios";
+// HOOKS
 import { useRouter } from "next/router";
 const UserEditPage = ({ data, setDarkMode }) => {
+  // HOOK CALL
   const router = useRouter();
+  // TO PREVENT ERRORS DUE TO DELAY
+  const isIdLoaded = router.query.userId ? true : false
+  // ASYNC FUNCTIONS
   const postEditedData = async (newUserData) => {
-
-    if(router.query.userId){
+    if(isIdLoaded){
           const userData = await axios.get(
       `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${router.query.userId}`
     );
@@ -16,12 +22,11 @@ const UserEditPage = ({ data, setDarkMode }) => {
         `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${router.query.userId}`,
         newUserData
       )  
-      console.log(await res)
     }} 
     router.push("/");
   };
   const deleteData = async () => {
-    if(router.query.userId){
+    if(isIdLoaded){
     const doesUserExist = await axios.get(
       `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/${router.query.userId}`
     );
@@ -34,7 +39,7 @@ const UserEditPage = ({ data, setDarkMode }) => {
       router.push("/");
     }}
   };
-  if (router.query.userId) {
+  if (isIdLoaded) {
     return (
       <main>
         <EditPage data={data} setDarkMode={setDarkMode} postEditedData={postEditedData} deleteData={deleteData} />
@@ -42,6 +47,7 @@ const UserEditPage = ({ data, setDarkMode }) => {
     );
   }
 };
+// TO GET ONE SPECEFIC USER DATA
 export async function getServerSideProps(context) {
   const {
     params: { userId },

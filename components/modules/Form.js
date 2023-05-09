@@ -1,14 +1,15 @@
-import { ageToDate } from "@/funcs/funcs";
+// HOOKS
 import { useState } from "react";
+// ICONS
 import { FaUserAstronaut } from "react-icons/fa";
 import { GrFormClose } from "react-icons/gr";
-import { useRouter } from "next/router";
-import { calcAge } from "@/funcs/funcs";
+// HELPER FUNCTIONS
+import { ageToDate, calcAge } from "@/helper/helper";
 const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
+  // STATES
   const [avatar, setAvatar] = useState(isOnEdit ? data.avatar : null);
-  const router = useRouter();
   const [newUserData, setNewUserData] = useState(
-    data
+    isOnEdit
       ? data
       : {
           name: "",
@@ -24,30 +25,31 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
         }
   );
   const [userAge , setUserAge] = useState(calcAge(newUserData.dateOfBirth))
+  // EVENT HANDLERS
   const imageHandler = ({ target: { files } }) => {
     files && setAvatar(URL.createObjectURL(files[0]));
     files && setNewUserData({ ...newUserData, avatar: files[0] });
   };
-
-  const changeHandler = (e) => {
+  const inputChangeHandler = (e ) => {
     const { value } = e.target;
     setNewUserData({ ...newUserData, [e.target.name]: value });
+    if(e.target.name === "dateOfBirth") {
+      DOBChangeHandler(e)
+    }
   };
   const DOBChangeHandler = ({ target : {value} }) => {
    setUserAge(value)
    setNewUserData({...newUserData , dateOfBirth : ageToDate(value)})
-   console.log(value)
-   console.log(ageToDate(value))
-
+  
   };
 
   return (
     <div
-      className={`w-full h-full z-20 dark:text-white ${
+      className={`w-full z-20 dark:text-white  ${
         isOnEdit ? "" : "absolute"
       } `}
     >
-      <div className="  w-[540px] h-[878px] bg-[#FBFDFE] dark:bg-[#020B1F] mx-auto mt-16 rounded-3xl px-16 py-8 border border-[#DCE9FC] dark:border-[#182040] shadow-lg mb-16 dark:shadow-[#182040]  ">
+      <div className="  w-[540px] h-[878px] bg-[#FBFDFE] dark:bg-[#020B1F] mx-auto mt-8 rounded-3xl  p-8 border border-[#DCE9FC] dark:border-[#182040] shadow-lg mb-16 dark:shadow-[#182040]  ">
         <div className=" w-full h-16  text-xl border-b flex items-center justify-start border-slate-300 ">
           {data ? (
             ""
@@ -73,7 +75,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                     htmlFor="file-upload"
                     className="relative cursor-pointer rounded-md w-full h-full"
                   >
-                    {avatar ? (
+                    {!!avatar ? (
                       <img
                         src={avatar}
                         className="w-full h-full rounded-full"
@@ -92,30 +94,30 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
               </div>
             </div>
           </div>
-          <div className="mt-12 flex items-center justify-center flex-col gap-6 ">
+          <div className="mt-12 flex items-center justify-center flex-col gap-6 p-4 ">
             <div className="w-full flex items-center justify-between  ">
               <div className="">
                 <label className="text-slate-600">نام کاربر</label>
                 <br />
                 <input
                   value={newUserData.name}
-                  onChange={changeHandler}
+                  onChange={inputChangeHandler}
                   name="name"
                   type="text"
                   placeholder="نام کاربر را وارد کنید"
-                  className="bg-transparent border border-slate-300 p-4 rounded-xl outline-none"
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  "
                 />
               </div>
-              <div>
+              <div className="" >
                 <label className="text-slate-600">سن</label>
                 <br />
                 <input
                   value={userAge}
-                  onChange={DOBChangeHandler}
-                  name="dateOfBirtth"
+                  onChange={inputChangeHandler}
+                  name="dateOfBirth"
                   type="number"
                   placeholder="سن کاربر را وارد کنید"
-                  className="bg-transparent border border-slate-300 p-4 rounded-xl outline-none "
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none "
                 />
               </div>{" "}
             </div>
@@ -125,11 +127,11 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                 <br />
                 <input
                   value={newUserData.email}
-                  onChange={changeHandler}
+                  onChange={inputChangeHandler}
                   name="email"
                   type="text"
                   placeholder="ایمیل کاربر را وارد کنید"
-                  className="bg-transparent border border-slate-300 p-4 rounded-xl outline-none "
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none "
                 />
               </div>
               <div>
@@ -137,11 +139,11 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                 <br />
                 <input
                   value={newUserData.phoneNumber}
-                  onChange={changeHandler}
+                  onChange={inputChangeHandler}
                   name="phoneNumber"
                   type="text"
                   placeholder="شماره تلفن کاربر را وارد کنید"
-                  className="bg-transparent border border-slate-300 p-4 rounded-xl outline-none "
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none "
                 />
               </div>{" "}
             </div>
@@ -151,11 +153,11 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                 <br />
                 <input
                   value={newUserData.country}
-                  onChange={changeHandler}
+                  onChange={inputChangeHandler}
                   name="country"
                   type="text"
                   placeholder="کشور"
-                  className="bg-transparent border border-slate-300 p-4 rounded-xl outline-none  w-20"
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  w-20"
                 />
               </div>
               <div>
@@ -163,11 +165,11 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                 <br />
                 <input
                   value={newUserData.city}
-                  onChange={changeHandler}
+                  onChange={inputChangeHandler}
                   name="city"
                   type="text"
                   placeholder="شهر"
-                  className="bg-transparent border border-slate-300 p-4 rounded-xl outline-none  w-20"
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  w-20"
                 />
               </div>
               <div>
@@ -175,11 +177,11 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                 <br />
                 <input
                   value={newUserData.street}
-                  onChange={changeHandler}
+                  onChange={inputChangeHandler}
                   name="street"
                   type="text"
                   placeholder="خیابان"
-                  className="bg-transparent border border-slate-300 p-4 rounded-xl outline-none   w-20"
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none   w-20"
                 />
               </div>{" "}
               <div>
@@ -187,11 +189,11 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                 <br />
                 <input
                   value={newUserData.zipcode}
-                  onChange={changeHandler}
+                  onChange={inputChangeHandler}
                   name="zipcode"
                   type="text"
                   placeholder="کد پستی"
-                  className="bg-transparent border border-slate-300 p-4 rounded-xl outline-none   w-20"
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none   w-20"
                 />
               </div>{" "}
             </div>
@@ -201,11 +203,11 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                 <br />
                 <input
                   value={newUserData.company}
-                  onChange={changeHandler}
+                  onChange={inputChangeHandler}
                   name="company"
                   type="text"
                   placeholder="شرکت کاربر خودرا وارد کنید"
-                  className="bg-transparent border border-slate-300 p-4 rounded-xl outline-none  w-full "
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  w-full "
                 />
               </div>
             </div>

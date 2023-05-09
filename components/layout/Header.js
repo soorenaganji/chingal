@@ -1,20 +1,23 @@
+// ICONS
 import { TbSunLow, TbMoonFilled } from "react-icons/tb";
+// ASSETS
 import logo from "@/public/chingal-logo 1.png";
 import Image from "next/image";
+// BUILT-IN PACKAGES
 import Link from "next/link";
-const Header = ({ searched, setSearched, setDarkMode , isInHome }) => {
-  const searcher = (e) => {
-    const phrase = e.target.value.toLowerCase();
-    setSearched(phrase);
-    console.log("searched phrase");
+const Header = ({ searchedPhrase, setSearchedPhrase, setDarkMode , isInHome }) => {
+  // EVENT HANDLERS
+  const searchHandler = (e) => {
+    const phrase = e.target.value
+    setSearchedPhrase(phrase);
   };
   return (
-    <div>
-      <div className="w-full px-16 flex items-center justify-between h-[110px] py-6 border-b-2 dark:border-slate-700 bg-[#FBFDFE] dark:bg-[#020B1F] ">
+    <>
+      <div className="w-full px-16 flex items-center justify-between h-[110px] py-6 border-b-2 dark:border-slate-700 bg-[#FBFDFE] dark:bg-[#020B1F] overflow-hidden ">
         <Link href={"/"} >
           <Image src={logo} alt="logo" />
         </Link>
-        <div className="flex items-center justify-center gap-8 flex-row-reverse ">
+        <div className="flex items-center justify-center gap-8 flex-row-reverse overflow-hidden ">
           <div className="flex items-center justify-between bg-gradient-to-tr dark:from-[#020B1F] dark:to-[#0C132C] dark:border-slate-700 from-[#FBFDFE] to-[#DCE9FC] via-[#F3F8FC] border-[1px] rounded-xl w-[104px] h-[56px] p-1 gap-1 ">
             <button
               className=" flex items-center justify-center rounded-lg w-10 h-10  bg-[#0559FD] dark:bg-transparent shadow-lg  dark:shadow-none  shadow-[#0558fd96] "
@@ -39,12 +42,12 @@ const Header = ({ searched, setSearched, setDarkMode , isInHome }) => {
             type="search"
             className={`w-[512px] h-[56px] rounded-xl bg-gradient-to-tr  from-[#FBFDFE] to-[#DCE9FC] via-[#F3F8FC] p-4 outline-none border dark:from-[#020B1F] dark:to-[#0C132C] dark:border-slate-700 ${isInHome ? "" : "hidden"} `}
             placeholder={` جستجو کنید `}
-            value={searched}
-            onChange={searcher}
+            value={searchedPhrase}
+            onChange={searchHandler}
           />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

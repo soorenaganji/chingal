@@ -1,8 +1,8 @@
-import { calcAge } from "@/funcs/funcs";
-import { useRouter } from "next/router";
+// HELPER FUNCTIONS
+import { calcAge } from "@/helper/helper";
 const User = ({ user, index }) => {
-  const router = useRouter();
-  const userNavigator = (id) => {
+// NAVIGATING THE USER TO THE EDIT PAGE
+  const navigateUser = (id) => {
     router.push(`/edit/${id}`);
   };
   return (
@@ -10,9 +10,9 @@ const User = ({ user, index }) => {
       className={
         index % 2
           ? "cursor-pointer"
-          : "bg-[#DCE9FC] dark:bg-[#182040] cursor-pointer"
+          : "bg-[#DCE9FC] dark:bg-[#182040] cursor-pointer overflow-hidden"
       }
-      onClick={() => userNavigator(user.id)}
+      onClick={() => navigateUser(user.id)}
     >
       <td className="px-4 py-6 border border-slate-300 dark:border-slate-700 ">
         {user.name ? user.name : "وارد نشده"}

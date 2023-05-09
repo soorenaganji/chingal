@@ -1,5 +1,5 @@
 // HELPER FUNCTIONS
-import { calcAge } from "@/helper/helper";
+import { calcAge , validateParametters } from "@/helper/helper";
 const User = ({ user, index }) => {
 // NAVIGATING THE USER TO THE EDIT PAGE
   const navigateUser = (id) => {
@@ -15,26 +15,22 @@ const User = ({ user, index }) => {
       onClick={() => navigateUser(user.id)}
     >
       <td className="px-4 py-6 border border-slate-300 dark:border-slate-700 ">
-        {user.name ? user.name : "وارد نشده"}
+        {validateParametters(user.name)}
       </td>
       <td className="px-4 py-6 border border-slate-300 dark:border-slate-700 ">
-        {calcAge(user.dateOfBirth)}
+        {validateParametters(calcAge(user.dateOfBirth))}
       </td>
       <td className="px-4 py-6 border border-slate-300 dark:border-slate-700 ">
-        {user.phoneNumber ? user.phoneNumber : "وارد نشده"}
+        {validateParametters(user.phoneNumber)}
       </td>
       <td className="px-4 py-6 border border-slate-300 dark:border-slate-700 ">
-        {user.email ? user.email : "وارد نشده"}
+        {validateParametters(user.email)}
       </td>
       <td className="px-4 py-6 border border-slate-300 dark:border-slate-700 ">
-        {user.city} , {user.street} , {user.zipcode}{" "}
+        {validateParametters(user.city)} {" "}, {" "}{validateParametters(user.street)} {" "},{" "}{validateParametters(user.zipcode)}{" "}
       </td>
       <td className="px-4 py-6 border border-slate-300 dark:border-slate-700 ">
-        {user.company
-          ? user.company
-            ? user.company
-            : "وارد نشده"
-          : "وارد نشده"}
+        {validateParametters(user.company)}
       </td>
     </tr>
   );

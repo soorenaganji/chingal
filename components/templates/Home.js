@@ -78,7 +78,7 @@ const Home = ({ data, setDarkMode }) => {
               کاربر جدید
             </button>
           </div>
-          <div className=" rounded-xl  mt-8 border dark:border-slate-700  max-h-[80vh] overflow-x-hidden ">
+          <div className=" rounded-xl  mt-8 border dark:border-slate-700  max-h-[70vh] overflow-x-hidden ">
             <table className="w-full overflow-scroll">
               <thead>
                 <tr className="">

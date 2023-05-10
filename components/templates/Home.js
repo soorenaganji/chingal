@@ -17,9 +17,7 @@ const Home = ({ data, setDarkMode }) => {
   const formOpener = () => {
     setIsFormOpen(true);
   };
-  // SEARCH BAR FUNCTION CALL
   const searchedUsers = filterBySearchedPhrase(data , searchedPhrase)
-  //  LISTING USERS DATA AND PASSING THEM TO THE "User" COMPONENT
   const listUsersInTable = () => {
    return searchedUsers.length ? (
       searchedUsers.map((user, index) => (
@@ -44,7 +42,6 @@ const Home = ({ data, setDarkMode }) => {
     resetFormData(setNewUserData)
     setIsFormOpen(false);
   };
-  // UI
   return (
     <>
       {isFormOpen && (

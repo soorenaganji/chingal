@@ -7,6 +7,9 @@ import { useRouter } from "next/router";
 const UserEditPage = ({ data, setDarkMode }) => {
   // HOOK CALL
   const router = useRouter();
+
+  console.log("start")
+  console.log(router.query.userId)
   // TO PREVENT ERRORS DUE TO DELAY
   const isIdLoaded = router.query.userId ? true : false
   // ASYNC FUNCTIONS

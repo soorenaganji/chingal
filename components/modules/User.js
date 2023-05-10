@@ -1,6 +1,9 @@
 // HELPER FUNCTIONS
 import { calcAge , validateParametters } from "@/helper/helper";
+// HOOKS
+import { useRouter } from "next/router";
 const User = ({ user, index }) => {
+  const router = useRouter()
 // NAVIGATING THE USER TO THE EDIT PAGE
   const navigateUser = (id) => {
     router.push(`/edit/${id}`);

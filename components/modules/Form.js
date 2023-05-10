@@ -147,7 +147,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                 />
               </div>{" "}
             </div>
-            <div className="w-full flex items-center justify-between  ">
+            <div className="gap-6 flex items-center justify-between  ">
               <div>
                 <label className="text-slate-600"> کشور</label>
                 <br />
@@ -157,7 +157,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="country"
                   type="text"
                   placeholder="کشور"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  w-20 mt-2 "
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  w-full mt-2 "
                 />
               </div>
               <div>
@@ -169,7 +169,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="city"
                   type="text"
                   placeholder="شهر"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  w-20 mt-2 "
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  w-full mt-2 "
                 />
               </div>
               <div>
@@ -181,7 +181,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="street"
                   type="text"
                   placeholder="خیابان"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none   w-20 mt-2 "
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none   w-full mt-2 "
                 />
               </div>{" "}
               <div>
@@ -193,7 +193,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="zipcode"
                   type="text"
                   placeholder="کد پستی"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none   w-20 mt-2 "
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none   w-full mt-2 "
                 />
               </div>{" "}
             </div>

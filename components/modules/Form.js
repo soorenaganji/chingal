@@ -45,11 +45,11 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
 
   return (
     <div
-      className={`w-full z-20 dark:text-white  ${
-        isOnEdit ? "" : "absolute"
+      className={`w-full z-20 dark:text-white h-screen ${
+        isOnEdit ? "" : "absolute "
       } `}
     >
-      <div className="  w-[540px] h-[878px] bg-[#FBFDFE] dark:bg-[#020B1F] mx-auto mt-8 rounded-3xl  p-8 border border-[#DCE9FC] dark:border-[#182040] shadow-lg mb-16 dark:shadow-[#182040]  ">
+      <div className="  w-[540px] h-[96vh] bg-[#FBFDFE] dark:bg-[#020B1F] mx-auto mt-8 rounded-3xl  p-8  border border-[#DCE9FC] dark:border-[#182040] shadow-lg mb-16 dark:shadow-[#182040]  ">
         <div className=" w-full h-16  text-xl border-b flex items-center justify-start border-slate-300 ">
           {data ? (
             ""
@@ -58,14 +58,14 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
               className="ml-6 outline-none"
               onClick={() => formOpener(false)}
             >
-              <GrFormClose className="text-4xl dark:text-white dark:bg-white/50 rounded-xl " />
+              <GrFormClose className="text-4xl dark:text-white dark:bg-white/50 rounded-xl text-black " />
             </button>
           )}
           <h3> {isOnEdit ? `ویرایش کاربر` : "کاربر جدید"}</h3>
         </div>
         <div>
           <div>
-            <div className="mt-4 flex justify-center items-center w-32 h-32 mx-auto rounded-full border-2 border-[#0559FD] p-2">
+            <div className="mt-8 flex justify-center items-center w-32 h-32 mx-auto rounded-full border-2 border-[#0559FD] ">
               <div className=" text-center w-full h-full ">
                 <div
                   className="flex w-full h-full text-gray-600"
@@ -94,10 +94,10 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
               </div>
             </div>
           </div>
-          <div className="mt-12 flex items-center justify-center flex-col gap-6 p-4 ">
-            <div className="w-full flex items-center justify-between  ">
+          <div className=" flex items-center justify-center flex-col gap-6 p-4 ">
+            <div className="gap-[24px] flex items-center justify-between  ">
               <div className="">
-                <label className="text-slate-600">نام کاربر</label>
+                <label className="text-slate-600 ">نام کاربر</label>
                 <br />
                 <input
                   value={newUserData.name}
@@ -105,7 +105,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="name"
                   type="text"
                   placeholder="نام کاربر را وارد کنید"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  "
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none w-full mt-2  "
                 />
               </div>
               <div className="" >
@@ -117,11 +117,11 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="dateOfBirth"
                   type="number"
                   placeholder="سن کاربر را وارد کنید"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none "
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none w-full mt-2  "
                 />
               </div>{" "}
             </div>
-            <div className="w-full flex items-center justify-between  ">
+            <div className="gap-[24px] flex items-center justify-between  ">
               <div>
                 <label className="text-slate-600">ایمیل کاربر</label>
                 <br />
@@ -131,7 +131,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="email"
                   type="text"
                   placeholder="ایمیل کاربر را وارد کنید"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none "
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none w-full mt-2  "
                 />
               </div>
               <div>
@@ -143,7 +143,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="phoneNumber"
                   type="text"
                   placeholder="شماره تلفن کاربر را وارد کنید"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none "
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none w-full mt-2  "
                 />
               </div>{" "}
             </div>
@@ -157,7 +157,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="country"
                   type="text"
                   placeholder="کشور"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  w-20"
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  w-20 mt-2 "
                 />
               </div>
               <div>
@@ -169,7 +169,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="city"
                   type="text"
                   placeholder="شهر"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  w-20"
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  w-20 mt-2 "
                 />
               </div>
               <div>
@@ -181,7 +181,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="street"
                   type="text"
                   placeholder="خیابان"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none   w-20"
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none   w-20 mt-2 "
                 />
               </div>{" "}
               <div>
@@ -193,7 +193,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="zipcode"
                   type="text"
                   placeholder="کد پستی"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none   w-20"
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none   w-20 mt-2 "
                 />
               </div>{" "}
             </div>
@@ -207,13 +207,13 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="company"
                   type="text"
                   placeholder="شرکت کاربر خودرا وارد کنید"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  w-full "
+                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  w-full mt-2  "
                 />
               </div>
             </div>
-            <div className="w-full flex items-center justify-between mt-8 flex-row-reverse ">
+            <div className="w-full flex items-center justify-between mt-8 gap-6 flex-row-reverse ">
               <button
-                className="w-40 h-14 text-lg rounded-lg bg-[#0559FD] text-white shadow-lg shadow-[#0558fd80]"
+                className="w-full h-14 text-lg rounded-lg bg-[#0559FD] text-white shadow-lg shadow-[#0558fd80]"
                 onClick={() => postData(newUserData , setNewUserData)}
               >
                 تایید
@@ -221,8 +221,8 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
               <button
                 className={
                   isOnEdit
-                    ? "w-40 h-14 text-lg rounded-lg bg-[#FF3231] shadow-lg shadow-[#ff3131a4] text-white "
-                    : "w-40 h-14 text-lg rounded-lg border text-[#0559fd] border-[#0559FD] "
+                    ? "w-full h-14 text-lg rounded-lg bg-[#FF3231] shadow-lg text-white "
+                    : "w-full h-14 text-lg rounded-lg border text-[#0559fd] border-[#0559FD] "
                 }
                 onClick={() => cancelOrDelete(setNewUserData)}
               >

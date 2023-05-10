@@ -51,6 +51,7 @@
 ::-webkit-scrollbar {
   width: 10px;
   background: transparent;
+  direction: rtl;
 }
 
 /* Track */

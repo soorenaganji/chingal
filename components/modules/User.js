@@ -17,7 +17,7 @@ const User = ({ user, index }) => {
       }
       onClick={() => navigateUser(user.id)}
     >
-      <td className="px-4 py-6 border border-slate-300 dark:border-slate-700 ">
+      <td className="px-4 py-6 border border-slate-300 dark:border-slate-700 w-32 ">
         {validateParametters(user.name)}
       </td>
       <td className="px-4 py-6 border border-slate-300 dark:border-slate-700 ">

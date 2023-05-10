@@ -1,5 +1,4 @@
-// COMPONENTS
-import Footer from "@/components/layout/Footer";
+
 // STYLES
 import "@/styles/globals.css";
 // BUILT-IN PACKAGES
@@ -35,7 +34,6 @@ export default function App({ Component, pageProps }) {
       <div className={darkMode ? "dark  overflow-hidden " : " overflow-hidden"}>
         <div className="w-full  bg-[#F3F8FC] bg-noise  bg-repeat dark:bg-[#0C132C]  min-h-[100vh] overflow-hidden ">
           <Component {...pageProps} setDarkMode={setDarkMode} />
-          <Footer />
         </div>
       </div>
     </>

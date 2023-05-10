@@ -62,39 +62,39 @@ const Home = ({ data, setDarkMode }) => {
           isInHome={true}
         />
 
-        <div className="overflow-hidden  p-16  ">
+        <div className="overflow-hidden  pt-[50px] px-[48px]  ">
           <div className="w-full h-[56px] flex items-center justify-between ">
             <div className="flex items-center justify-center gap-3">
               <IoIosArrowBack className="text-4xl" />
               <p>لیست کاربران</p>
             </div>
             <button
-              className="w-24 h-12 bg-[#0559FD] text-white rounded-xl hover:shadow-xl hover:shadow-[#0558fd8d] transition-all duration-300 "
+              className="w-[128px] h-[56px] bg-[#0559FD] text-white rounded-2xl hover:shadow-xl hover:shadow-[#0558fd8d] transition-all duration-300 text-lg "
               onClick={formOpener}
             >
               کاربر جدید
             </button>
           </div>
-          <div className=" rounded-xl  mt-8 border dark:border-slate-700  max-h-[70vh] overflow-x-hidden ">
+          <div className=" rounded-xl  mt-8 border dark:border-slate-700  max-h-[64vh] overflow-x-hidden">
             <table className="w-full overflow-scroll">
               <thead>
                 <tr className="">
-                  <th className=" rounded-tr-xl text-center bg-[#0559FD] text-white ">
+                  <th className=" rounded-tr-xl text-center bg-[#0559FD] text-white  font-normal  ">
                     نام کاربر
                   </th>
-                  <th className="border rounded-xl text-center dark:border-slate-700 ">
+                  <th className="border rounded-xl text-center dark:border-slate-700  text-slate-800 dark:text-slate-300  font-normal  ">
                     سن
                   </th>
-                  <th className="border rounded-xl text-center dark:border-slate-700 ">
+                  <th className="border rounded-xl text-center dark:border-slate-700  text-slate-800 dark:text-slate-300  font-normal  ">
                     شماره تلفن
                   </th>
-                  <th className="border rounded-xl text-center dark:border-slate-700 ">
+                  <th className="border rounded-xl text-center dark:border-slate-700  text-slate-800 dark:text-slate-300  font-normal  ">
                     ایمیل
                   </th>
-                  <th className="border rounded-xl text-center dark:border-slate-700 ">
+                  <th className="border rounded-xl text-center dark:border-slate-700  text-slate-800 dark:text-slate-300  font-normal  ">
                     آدرس
                   </th>
-                  <th className="border rounded-xl text-center dark:border-slate-700 ">
+                  <th className="border rounded-xl text-center dark:border-slate-700  text-slate-800 dark:text-slate-300  font-normal ">
                     شرکت
                   </th>
                 </tr>

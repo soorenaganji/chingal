@@ -1,10 +1,10 @@
 // HOOKS
 import { useState } from "react";
 // ICONS
-import { FaUserAstronaut } from "react-icons/fa";
+import { SlUserFollow } from "react-icons/sl";
 import { GrFormClose } from "react-icons/gr";
 // HELPER FUNCTIONS
-import { ageToDate, calcAge } from "@/helper/helper";
+import { ageToDate, calcAge , validteAvatarExists } from "@/helper/helper";
 const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
   // STATES
   const [avatar, setAvatar] = useState(isOnEdit ? data.avatar : null);
@@ -45,11 +45,11 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
 
   return (
     <div
-      className={`w-full z-20 dark:text-white h-screen ${
+      className={`w-full z-20 dark:text-white h-full ${
         isOnEdit ? "" : "absolute "
       } `}
     >
-      <div className="  w-[540px] h-[96vh] bg-[#FBFDFE] dark:bg-[#020B1F] mx-auto mt-8 rounded-3xl  p-8  border border-[#DCE9FC] dark:border-[#182040] shadow-lg mb-16 dark:shadow-[#182040]  ">
+      <div className="  w-[540px] h-[860px] bg-[#FBFDFE] dark:bg-[#020B1F] mx-auto mt-8 rounded-3xl  p-8  border border-[#DCE9FC] dark:border-[#182040] shadow-lg mb-16 dark:shadow-[#182040]  ">
         <div className=" w-full h-16  text-xl border-b flex items-center justify-start border-slate-300 ">
           {data ? (
             ""
@@ -75,13 +75,13 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                     htmlFor="file-upload"
                     className="relative cursor-pointer rounded-md w-full h-full"
                   >
-                    {!!avatar ? (
+                    {validteAvatarExists(avatar) ? (
                       <img
                         src={avatar}
                         className="w-full h-full rounded-full"
                       />
                     ) : (
-                      <FaUserAstronaut className="text-7xl text-[#022467] dark:text-[#ABC8FD] text-center w-full h-full rounded-full " />
+                      <SlUserFollow className=" text-[#022467] dark:text-[#ABC8FD] text-center w-full h-full p-6 " />
                     )}
                     <input
                       type="file"
@@ -105,7 +105,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="name"
                   type="text"
                   placeholder="نام کاربر را وارد کنید"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none w-full mt-2  "
+                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none w-full mt-2  "
                 />
               </div>
               <div className="" >
@@ -117,7 +117,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="dateOfBirth"
                   type="number"
                   placeholder="سن کاربر را وارد کنید"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none w-full mt-2  "
+                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none w-full mt-2  "
                 />
               </div>{" "}
             </div>
@@ -131,7 +131,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="email"
                   type="text"
                   placeholder="ایمیل کاربر را وارد کنید"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none w-full mt-2  "
+                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none w-full mt-2  "
                 />
               </div>
               <div>
@@ -143,7 +143,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="phoneNumber"
                   type="text"
                   placeholder="شماره تلفن کاربر را وارد کنید"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none w-full mt-2  "
+                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none w-full mt-2  "
                 />
               </div>{" "}
             </div>
@@ -157,7 +157,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="country"
                   type="text"
                   placeholder="کشور"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  w-full mt-2 "
+                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none  w-full mt-2 "
                 />
               </div>
               <div>
@@ -169,7 +169,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="city"
                   type="text"
                   placeholder="شهر"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  w-full mt-2 "
+                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none  w-full mt-2 "
                 />
               </div>
               <div>
@@ -181,7 +181,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="street"
                   type="text"
                   placeholder="خیابان"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none   w-full mt-2 "
+                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none   w-full mt-2 "
                 />
               </div>{" "}
               <div>
@@ -193,7 +193,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="zipcode"
                   type="text"
                   placeholder="کد پستی"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none   w-full mt-2 "
+                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none   w-full mt-2 "
                 />
               </div>{" "}
             </div>
@@ -207,7 +207,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                   name="company"
                   type="text"
                   placeholder="شرکت کاربر خودرا وارد کنید"
-                  className="bg-transparent  border border-slate-300 p-4 rounded-xl outline-none  w-full mt-2  "
+                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none  w-full mt-2  "
                 />
               </div>
             </div>

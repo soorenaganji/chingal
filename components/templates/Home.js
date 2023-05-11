@@ -43,7 +43,7 @@ const Home = ({ data, setDarkMode }) => {
     setIsFormOpen(false);
   };
   return (
-    <>
+    <div className="w-full h-full min-h-[100vh] dark:text-white">
       {isFormOpen && (
         <Form
           formOpener={setIsFormOpen}
@@ -53,7 +53,7 @@ const Home = ({ data, setDarkMode }) => {
         />
       )}
       <div
-        className={`w-full h-full ${isFormOpen && "blur-lg"} dark:text-white overflow-hidden `}
+        className={` ${isFormOpen && "blur-lg h-[900px]"} `}
       >
         <Header
           setSearchedPhrase={setSearchedPhrase}
@@ -62,7 +62,7 @@ const Home = ({ data, setDarkMode }) => {
           isInHome={true}
         />
 
-        <div className="overflow-hidden  pt-[50px] px-[48px]  ">
+        <div className="  pt-[50px] px-[48px]  ">
           <div className="w-full h-[56px] flex items-center justify-between ">
             <div className="flex items-center justify-center gap-3">
               <IoIosArrowBack className="text-4xl" />
@@ -75,8 +75,8 @@ const Home = ({ data, setDarkMode }) => {
               کاربر جدید
             </button>
           </div>
-          <div className=" rounded-xl  mt-8 border dark:border-slate-700  max-h-[64vh] overflow-x-hidden">
-            <table className="w-full overflow-scroll">
+          <div className=" rounded-xl  mt-8 border dark:border-slate-700  max-h-[64vh] overflow-x-hidden ">
+            <table className="w-full overflow-scroll table">
               <thead>
                 <tr className="">
                   <th className=" rounded-tr-xl text-center bg-[#0559FD] text-white  font-normal  ">
@@ -106,7 +106,7 @@ const Home = ({ data, setDarkMode }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

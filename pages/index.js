@@ -7,7 +7,7 @@ import axios from "axios";
 export default function index({data , setDarkMode}) {
   return (
     <>
-      <main className="w-full overflow-hidden">
+      <main className="w-full ">
         <Home data={data} setDarkMode={setDarkMode} />
       </main>
     </>

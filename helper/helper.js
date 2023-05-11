@@ -1,4 +1,4 @@
-// GETS THE DATE OF BIRTH FROM THE API AND CALCULATES THE USER AGE
+
 const calcAge = (date) => {
   const dob = date;
   const birthDate = new Date(dob);
@@ -12,7 +12,7 @@ const calcAge = (date) => {
       return age
   }
 };
-// IT GETS THE PERSIAN DIGITS FROM THE CLIENT IN THE AGE INPUT AND CONVERTS IT TO ENGLISH DIGIT TO BE VALID AS WE SEND IT TO THE BACKEND
+
 function persianToEnglish(str) {
   const persianDigits = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g];
   const englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -22,7 +22,7 @@ function persianToEnglish(str) {
 
   return str;
 }
-// THIS ONE DOES THE OPISITE OF THE "calcAge" FUNCTION , IT GETS THE AGE AND CALCULATES THE DATE OF BIRTH
+
 const ageToDate = (ageString) => {
   const ageInEnglish = persianToEnglish(ageString);
   const age = parseInt(ageInEnglish);
@@ -51,8 +51,7 @@ const resetFormData = (setNewUserData) => {
   });
 
 }
-// IT GETS THE SEARCHED PHRASE IN THE SEARCHBAR FROM THE CLIENT AND FILTERS USERS NAMES
-// WHEN THE SEARCH BAR VALUE IS AN EMPTY STRING , ALL DATA INCLUDE "" SO THAT WOULD BE ALL USERS
+
 const filterBySearchedPhrase = (data , searchedPhrase) => {
   const searchedUsers = [];
   data.map((user) => {
@@ -65,11 +64,19 @@ const filterBySearchedPhrase = (data , searchedPhrase) => {
 }
 
 const validateParametters = (parametter) => {
-  if (!!parametter){
-    return parametter
-  }else{
+  if (parametter == "" || parametter == null || parametter == undefined || parametter == " "){
     return "وارد نشده"
+  }else{
+    return parametter
   }
 }
 
-export { calcAge , ageToDate , resetFormData , filterBySearchedPhrase , validateParametters };
+const validteAvatarExists = (avatar) => {
+  if(!avatar || !Object.keys(avatar).length || avatar == ""){
+    return false
+  }else {
+    return true
+  }
+}
+
+export { calcAge , ageToDate , resetFormData , filterBySearchedPhrase , validateParametters , validteAvatarExists };

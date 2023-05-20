@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+
 @font-face {
   font-family: "Yekan";
   src: url("../public/fonts/IRANYekanMobileRegular.woff2") format("woff2");

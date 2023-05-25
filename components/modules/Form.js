@@ -1,64 +1,46 @@
-// HOOKS
+
 import { useState } from "react";
-// ICONS
+import BaseInput from "../base/BaseInput";
+
+import { ageToDate, calculateAge, validteAvatarExists } from "@/helper/helper";
+
 import { SlUserFollow } from "react-icons/sl";
-import { GrFormClose } from "react-icons/gr";
-// HELPER FUNCTIONS
-import { ageToDate, calcAge , validteAvatarExists } from "@/helper/helper";
-const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
-  // STATES
-  const [avatar, setAvatar] = useState(isOnEdit ? data.avatar : null);
-  const [newUserData, setNewUserData] = useState(
-    isOnEdit
-      ? data
-      : {
-          name: "",
-          dateOfBirth : "",
-          avatar,
-          phoneNumber: "",
-          country: "",
-          city: "",
-          street: "",
-          email: "",
-          zipcode: "",
-          company: "",
-        }
-  );
-  const [userAge , setUserAge] = useState(calcAge(newUserData.dateOfBirth))
-  // EVENT HANDLERS
+import { MdClose } from "react-icons/md";
+const Form = ({
+  formOpener,
+  data,
+  postData,
+  cancelOrDelete,
+  isOnEdit,
+  className,
+}) => {
+
+  const [avatar, setAvatar] = useState(data.avatar);
+  const [newUserData, setNewUserData] = useState(data);
+  const [userAge, setUserAge] = useState(calculateAge(newUserData.dateOfBirth));
+
   const imageHandler = ({ target: { files } }) => {
     files && setAvatar(URL.createObjectURL(files[0]));
     files && setNewUserData({ ...newUserData, avatar: files[0] });
   };
-  const inputChangeHandler = (e ) => {
+  const inputChangeHandler = (e) => {
     const { value } = e.target;
     setNewUserData({ ...newUserData, [e.target.name]: value });
-    if(e.target.name === "dateOfBirth") {
-      DOBChangeHandler(e)
-    }
   };
-  const DOBChangeHandler = ({ target : {value} }) => {
-   setUserAge(value)
-   setNewUserData({...newUserData , dateOfBirth : ageToDate(value)})
-  
+  const DOBChangeHandler = ({ target: { value } }) => {
+    setUserAge(value);
+    setNewUserData({ ...newUserData, dateOfBirth: ageToDate(value) });
   };
 
   return (
-    <div
-      className={`w-full z-20 dark:text-white h-full ${
-        isOnEdit ? "" : "absolute "
-      } `}
-    >
+    <div className={className + " w-full z-20 dark:text-white h-full"}>
       <div className="  w-[540px] h-[860px] bg-[#FBFDFE] dark:bg-[#020B1F] mx-auto mt-8 rounded-3xl  p-8  border border-[#DCE9FC] dark:border-[#182040] shadow-lg mb-16 dark:shadow-[#182040]  ">
         <div className=" w-full h-16  text-xl border-b flex items-center justify-start border-slate-300 ">
-          {data ? (
-            ""
-          ) : (
+          {!isOnEdit && (
             <button
-              className="ml-6 outline-none"
-              onClick={() => formOpener(false)}
-            >
-              <GrFormClose className="text-4xl dark:text-white dark:bg-white/50 rounded-xl text-black " />
+              className="ml-6 outline-none text-4xl text-slate-800 dark:text-slate-300 "
+              onClick={() => formOpener(false)}>
+              <MdClose className="" />
             </button>
           )}
           <h3> {isOnEdit ? `ویرایش کاربر` : "کاربر جدید"}</h3>
@@ -69,12 +51,12 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
               <div className=" text-center w-full h-full ">
                 <div
                   className="flex w-full h-full text-gray-600"
-                  onClick={() => document.querySelector(".input-image").click()}
-                >
+                  onClick={() =>
+                    document.querySelector(".input-image").click()
+                  }>
                   <label
                     htmlFor="file-upload"
-                    className="relative cursor-pointer rounded-md w-full h-full"
-                  >
+                    className="relative cursor-pointer rounded-md w-full h-full">
                     {validteAvatarExists(avatar) ? (
                       <img
                         src={avatar}
@@ -97,125 +79,99 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
           <div className=" flex items-center justify-center flex-col gap-6 p-4 ">
             <div className="gap-[24px] flex items-center justify-between  ">
               <div className="">
-                <label className="text-slate-600 ">نام کاربر</label>
-                <br />
-                <input
+                <BaseInput
+                  name={"name"}
+                  placeholder={" نام کاربر را وارد نمایید"}
                   value={newUserData.name}
-                  onChange={inputChangeHandler}
-                  name="name"
-                  type="text"
-                  placeholder="نام کاربر را وارد کنید"
-                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none w-full mt-2  "
+                  eventHandler={inputChangeHandler}
+                  label={" نام"}
                 />
               </div>
-              <div className="" >
-                <label className="text-slate-600">سن</label>
-                <br />
-                <input
+              <div className="">
+                <BaseInput
+                  name={"age"}
+                  placeholder={" سن کاربر را وارد نمایید"}
                   value={userAge}
-                  onChange={inputChangeHandler}
-                  name="dateOfBirth"
-                  type="number"
-                  placeholder="سن کاربر را وارد کنید"
-                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none w-full mt-2  "
+                  eventHandler={DOBChangeHandler}
+                  label={" سن"}
+                  type={"number"}
                 />
               </div>{" "}
             </div>
             <div className="gap-[24px] flex items-center justify-between  ">
               <div>
-                <label className="text-slate-600">ایمیل کاربر</label>
-                <br />
-                <input
+                <BaseInput
+                  name={"email"}
+                  placeholder={"ایمیل کاربر را وارد نمایید"}
                   value={newUserData.email}
-                  onChange={inputChangeHandler}
-                  name="email"
-                  type="text"
-                  placeholder="ایمیل کاربر را وارد کنید"
-                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none w-full mt-2  "
+                  eventHandler={inputChangeHandler}
+                  label={"ایمیل"}
+                  type={"email"}
                 />
               </div>
               <div>
-                <label className="text-slate-600">شماره تلفن</label>
-                <br />
-                <input
+                <BaseInput
+                  name={"phoneNumber"}
+                  placeholder={"شماره تلفن کاربرتلفن را وارد نمایید"}
                   value={newUserData.phoneNumber}
-                  onChange={inputChangeHandler}
-                  name="phoneNumber"
-                  type="text"
-                  placeholder="شماره تلفن کاربر را وارد کنید"
-                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none w-full mt-2  "
+                  eventHandler={inputChangeHandler}
+                  label={"شماره تلفن"}
                 />
               </div>{" "}
             </div>
             <div className="gap-6 flex items-center justify-between  ">
               <div>
-                <label className="text-slate-600"> کشور</label>
-                <br />
-                <input
+                <BaseInput
+                  name={"country"}
+                  placeholder={"کشور"}
                   value={newUserData.country}
-                  onChange={inputChangeHandler}
-                  name="country"
-                  type="text"
-                  placeholder="کشور"
-                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none  w-full mt-2 "
+                  eventHandler={inputChangeHandler}
+                  label={"کشور"}
                 />
               </div>
               <div>
-                <label className="text-slate-600"> شهر</label>
-                <br />
-                <input
+                <BaseInput
+                  name={"city"}
+                  placeholder={"شهر"}
                   value={newUserData.city}
-                  onChange={inputChangeHandler}
-                  name="city"
-                  type="text"
-                  placeholder="شهر"
-                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none  w-full mt-2 "
+                  eventHandler={inputChangeHandler}
+                  label={"شهر"}
                 />
               </div>
               <div>
-                <label className="text-slate-600">خیابان</label>
-                <br />
-                <input
+                <BaseInput
+                  name={"street"}
+                  placeholder={"خیابان"}
                   value={newUserData.street}
-                  onChange={inputChangeHandler}
-                  name="street"
-                  type="text"
-                  placeholder="خیابان"
-                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none   w-full mt-2 "
+                  eventHandler={inputChangeHandler}
+                  label={"خیابان"}
                 />
               </div>{" "}
               <div>
-                <label className="text-slate-600">کد پستی</label>
-                <br />
-                <input
+                <BaseInput
+                  name={"zipcode"}
+                  placeholder={"کدپستی"}
                   value={newUserData.zipcode}
-                  onChange={inputChangeHandler}
-                  name="zipcode"
-                  type="text"
-                  placeholder="کد پستی"
-                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none   w-full mt-2 "
+                  eventHandler={inputChangeHandler}
+                  label={"کدپستی"}
                 />
               </div>{" "}
             </div>
             <div className="w-full flex items-center justify-between  ">
               <div className="w-full">
-                <label className="text-slate-600">شرکت </label>
-                <br />
-                <input
+                <BaseInput
+                  name={"company"}
+                  placeholder={"شرکت کاربر را وارد نمایید"}
                   value={newUserData.company}
-                  onChange={inputChangeHandler}
-                  name="company"
-                  type="text"
-                  placeholder="شرکت کاربر خودرا وارد کنید"
-                  className="bg-transparent  border border-slate-300 dark:border-slate-700 p-4 rounded-xl outline-none  w-full mt-2  "
+                  eventHandler={inputChangeHandler}
+                  label={"شرکت"}
                 />
               </div>
             </div>
             <div className="w-full flex items-center justify-between mt-8 gap-6 flex-row-reverse ">
               <button
                 className="w-full h-14 text-lg rounded-lg bg-[#0559FD] text-white shadow-lg shadow-[#0558fd80]"
-                onClick={() => postData(newUserData , setNewUserData)}
-              >
+                onClick={() => postData(newUserData,setNewUserData)}>
                 تایید
               </button>
               <button
@@ -224,8 +180,7 @@ const Form = ({ formOpener, data, postData, cancelOrDelete, isOnEdit }) => {
                     ? "w-full h-14 text-lg rounded-lg bg-[#FF3231] shadow-lg text-white "
                     : "w-full h-14 text-lg rounded-lg border text-[#0559fd] border-[#0559FD] "
                 }
-                onClick={() => cancelOrDelete(setNewUserData)}
-              >
+                onClick={() => cancelOrDelete(setNewUserData)}>
                 {isOnEdit ? "حذف" : "لغو"}
               </button>
             </div>

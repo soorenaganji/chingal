@@ -8,6 +8,7 @@ import { createUser, getAllUsers } from "@/api/api";
 import { filterBySearchedPhrase, resetFormData } from "@/helper/helper";
 
 import { IoIosArrowBack } from "react-icons/io";
+import { toast } from "react-hot-toast";
 
 const Home = () => {
   
@@ -30,6 +31,7 @@ const Home = () => {
       .then(resetFormData(setNewUserData))
       .then(setIsFormOpen(false))
       .then(setTimeout(getData , 500))
+      .then(toast.success("کاربر با موفقیت اضافه شد"))
   };
 
   const formOpener = () => {

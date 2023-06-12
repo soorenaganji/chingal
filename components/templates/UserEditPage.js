@@ -8,6 +8,7 @@ import Form from "@/components/modules/Form";
 import { deleteUser, updateUser, getUser } from "@/api/api";
 
 import { IoIosArrowBack } from "react-icons/io";
+import { toast } from "react-hot-toast";
 
 const EditPage = () => {
   const router = useRouter();
@@ -27,12 +28,14 @@ const EditPage = () => {
     setUserData(data);
   };
   const updateUserAndNavigate = (newUserData) => {
-    updateUser(newUserData).then(router.push("/"));
+    updateUser(newUserData).then(toast.success("اطلاعات کاربر با موفقیت ویرایش شد")).then(router.push("/"))
   };
   const validateUserAndDeleteAndNavigate = () => {
     const id = router.query.userId;
     if (isIdLoaded) {
-      deleteUser(id).then(router.push("/"));
+      deleteUser(id)
+        .then(toast.success("کاربر با موفقیت حذف شد"))
+        .then(router.push("/"));
     }
   };
 

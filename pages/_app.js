@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
-
+import { Toaster } from "react-hot-toast";
 import AppContext from "@/context/AppContext";
 import "@/styles/globals.css";
 
@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <Toaster position="top-center" reverseOrder={false} />
       <div className={darkMode ? "dark  overflow-hidden " : " overflow-hidden"}>
         <div className="w-full  bg-[#F3F8FC] bg-noise  bg-repeat dark:bg-[#0C132C]  min-h-[100vh] overflow-hidden ">
           <AppContext.Provider value={{ darkMode, setDarkMode }}>

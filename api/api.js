@@ -1,5 +1,5 @@
 import axios from "axios";
-const { BASE_URL } = process.env;
+const BASE_URL = "https://63c2988fe3abfa59bdaf89f6.mockapi.io/users"
 const getAllUsers = async () => {
   const res = await axios.get(`${BASE_URL}`);
   return res.data;

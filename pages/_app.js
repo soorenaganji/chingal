@@ -8,13 +8,16 @@ export default function App({ Component, pageProps }) {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem("isDarkMode") == null)) {
-      localStorage.setItem("isDarkMode", JSON.stringify(darkMode));
+    const theme = localStorage.getItem("isDarkMode");
+    if (theme) {
+      setDarkMode(JSON.parse(theme));
     } else {
-      let isDark = JSON.parse(localStorage.getItem("isDarkMode"));
-      setDarkMode(isDark);
+      setDarkMode(darkMode);
     }
   }, []);
+  useEffect(() => {
+    localStorage.setItem("isDarkMode", darkMode);
+  }, [darkMode]);
 
   return (
     <>

@@ -28,7 +28,8 @@ const Home = () => {
   const createUserAndReinitializeForm = (newUserData, setNewUserData) => {
     createUser(newUserData)
       .then(resetFormData(setNewUserData))
-      .then(setIsFormOpen(false));
+      .then(setIsFormOpen(false))
+      .then(setTimeout(getData , 500))
   };
 
   const formOpener = () => {

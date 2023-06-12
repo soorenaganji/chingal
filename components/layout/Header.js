@@ -17,13 +17,11 @@ const Header = ({ searchedPhrase, setSearchedPhrase, isInHome }) => {
     setSearchedPhrase(phrase);
   };
   const context = useContext(AppContext);
-  const DarkModeSwitch = () => {
+  const switchToLightMode = () => {
     context.setDarkMode(false);
-    localStorage.setItem("isDarkMode", "false");
   };
-  const lightModeSwitch = () => {
+  const switchToDarkMode = () => {
     context.setDarkMode(true);
-    localStorage.setItem("isDarkMode", "true");
   };
   return (
     <>
@@ -36,13 +34,13 @@ const Header = ({ searchedPhrase, setSearchedPhrase, isInHome }) => {
           <div className="flex items-center justify-between bg-gradient-to-tr dark:from-[#020B1F] dark:to-[#0C132C] dark:border-slate-900 from-[#FBFDFE] to-[#DCE9FC] via-[#F3F8FC] border-[1px] rounded-2xl w-[104px] h-[56px] p-1 gap-1 ">
             <button
               className=" flex items-center justify-center rounded-xl w-10 h-10  bg-[#0559FD] dark:bg-transparent shadow-lg  dark:shadow-none  shadow-[#0558fd96] "
-              onClick={DarkModeSwitch}>
+              onClick={switchToLightMode}>
               <FiSun className="text-2xl text-white dark:text-slate-500 " />
             </button>
 
             <button
               className=" flex items-center justify-center rounded-xl w-10 h-10 dark:bg-[#0559fd] dark:shadow-lg dark:shadow-[#0558fd96]  "
-              onClick={lightModeSwitch}>
+              onClick={switchToDarkMode}>
               <TbMoonFilled className="text-2xl text-slate-700 dark:text-white " />
             </button>
           </div>

@@ -44,21 +44,23 @@ const UsersTable = ({ searchedUsers }) => {
   };
 
   return (
-    <table className="w-full">
-      <thead className="">
-        <tr className="">
-          {cells.map((cell) => (
-            <th className={cell.class} key={cell.title}>
-              {cell.title}
-            </th>
-          ))}
-        </tr>
-      </thead>
+    <section>
+      <table className="w-full">
+        <thead className="">
+          <tr className="">
+            {cells.map((cell) => (
+              <th className={cell.class} key={cell.title}>
+                {cell.title}
+              </th>
+            ))}
+          </tr>
+        </thead>
 
-      <tbody className="text-center  overflow-scroll ">
-        {listUsersInTable()}
-      </tbody>
-    </table>
+        <tbody className="text-center  overflow-scroll ">
+          {listUsersInTable()}
+        </tbody>
+      </table>
+    </section>
   );
 };
 
